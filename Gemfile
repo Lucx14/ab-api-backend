@@ -27,12 +27,13 @@ end
 group :test do
   gem 'database_cleaner-active_record', '~> 1.8'
   gem 'shoulda-matchers', '~> 4.3'
+  gem 'simplecov', '~> 0.19.0'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# might need some of these later...
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -41,3 +42,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+# gem 'jwt', '~> 2.2', '>= 2.2.1'
+# gem 'cloudinary', '~> 1.14'
+# gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+# gem 'active_model_serializers', '~> 0.10.10'
