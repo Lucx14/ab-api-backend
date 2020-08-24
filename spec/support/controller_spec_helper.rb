@@ -1,4 +1,2 @@
 module ControllerSpecHelper
-
-
 end
