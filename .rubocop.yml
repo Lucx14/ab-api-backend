@@ -4,6 +4,7 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - 'db/schema.rb'
+    - 'db/seeds.rb'
     - 'db/migrate/**/*'
     - 'bin/*'
     - 'config/**/*'
@@ -14,6 +15,7 @@ AllCops:
     - 'spec/rails_helper.rb'
     - 'spec/spec_helper.rb'
     - 'spec/support/database_cleaner.rb'
+    - 'spec/support/controller_spec_helper.rb'
     - 'vendor/bundle/**/*'
     - 'coverage/*'
 
