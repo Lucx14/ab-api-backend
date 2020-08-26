@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Home, type: :model do
+RSpec.describe Listing, type: :model do
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:home_type) }
+    it { is_expected.to validate_presence_of(:listing_type) }
     it { is_expected.to validate_presence_of(:short_description) }
     it { is_expected.to validate_presence_of(:long_description) }
 

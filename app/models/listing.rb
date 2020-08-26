@@ -1,5 +1,7 @@
-class Home < ApplicationRecord
-  validates :home_type, presence: true
+class Listing < ApplicationRecord
+  belongs_to :host, class_name: :User
+
+  validates :listing_type, presence: true
   validates :short_description, presence: true
   validates :long_description, presence: true
   validates :total_occupancy, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 11 }

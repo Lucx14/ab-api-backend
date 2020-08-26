@@ -1,13 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe 'Homes', type: :request do
-  let!(:homes) { create_list(:home, 10) }
-  let(:home_id) { homes.first.id }
+RSpec.describe 'Listings', type: :request do
+  let(:user) { create(:user) }
+  let!(:listings) { create_list(:listing, 10, host_id: user.id) }
+  let(:listing_id) { listings.first.id }
 
-  describe 'GET /homes' do
-    before { get '/homes/' }
+  describe 'GET /listings' do
+    before { get '/listings' }
 
-    it 'returns homes' do
+    it 'returns listings' do
       expect(response.body).not_to be_empty
       expect(JSON.parse(response.body).length).to eq(10)
     end
@@ -17,13 +18,13 @@ RSpec.describe 'Homes', type: :request do
     end
   end
 
-  describe 'GET /homes/:id' do
-    before { get "/homes/#{home_id}" }
+  describe 'GET /listings/:id' do
+    before { get "/listings/#{listing_id}" }
 
     context 'when a record exists' do
-      it 'returns the home' do
+      it 'returns the listing' do
         expect(response.body).not_to be_empty
-        expect(JSON.parse(response.body)['id']).to eq(home_id)
+        expect(JSON.parse(response.body)['id']).to eq(listing_id)
       end
 
       it 'returns status code 200' do
@@ -32,24 +33,24 @@ RSpec.describe 'Homes', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:home_id) { 100 }
+      let(:listing_id) { 100 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(:not_found)
       end
 
       it 'returns an error message' do
-        expect(response.body).to match(/Couldn't find Home/)
+        expect(response.body).to match(/Couldn't find Listing/)
       end
     end
   end
 
-  describe 'POST /homes' do
+  describe 'POST /listings' do
     context 'when the request is valid' do
-      before { post '/homes', params: valid_home_attributes }
+      before { post '/listings', params: valid_listing_attributes }
 
-      it 'creates a home' do
-        expect(JSON.parse(response.body)['long_description']).to eq(valid_home_attributes[:long_description])
+      it 'creates a listing' do
+        expect(JSON.parse(response.body)['long_description']).to eq(valid_listing_attributes[:long_description])
       end
 
       it 'returns a status code 201' do
@@ -58,21 +59,21 @@ RSpec.describe 'Homes', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/homes', params: invalid_home_attributes }
+      before { post '/listings', params: invalid_listing_attributes }
 
       it 'returns a status code 422' do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'returns a validation vailure message' do
-        expect(JSON.parse(response.body)['message']).to match(/Validation failed: Home type can't be blank/)
+        expect(JSON.parse(response.body)['message']).to match(/Validation failed: Listing type can't be blank/)
       end
     end
   end
 
-  describe 'PUT /homes/:id' do
+  describe 'PUT /listings/:id' do
     context 'when the record exists' do
-      before { put "/homes/#{home_id}", params: valid_home_attributes }
+      before { put "/listings/#{listing_id}", params: valid_listing_attributes }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -84,8 +85,8 @@ RSpec.describe 'Homes', type: :request do
     end
   end
 
-  describe 'DELETE /homes/:id' do
-    before { delete "/homes/#{home_id}" }
+  describe 'DELETE /listings/:id' do
+    before { delete "/listings/#{listing_id}" }
 
     it 'returns a status code 204' do
       expect(response).to have_http_status(:no_content)

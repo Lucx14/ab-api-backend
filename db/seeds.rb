@@ -1,7 +1,15 @@
+# Seed some users
+3.times do
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name 
+  )
+end
+
 # Seed data for Homes
 2.times do
-  Home.create(
-    home_type: 'Flat',
+  User.last.listings.create(
+    listing_type: 'Flat',
     short_description: 'Loft Room in E London in Family Home',
     long_description: 'This is a fantastic studio apartment offering bright, well presented accommodation. The property offers an abundance of light, stylish modern finish and various handy amenities, making it perfect for both tourists and business travellers.',
     total_occupancy: 1,

@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :home do
-    home_type { Faker::Lorem.word }
+  factory :listing do
+    listing_type { Faker::Lorem.word }
     short_description { Faker::Lorem.sentence(word_count: 8) }
     long_description { Faker::Lorem.sentence(word_count: 20) }
     total_occupancy { Faker::Number.within(range: 1..10) }

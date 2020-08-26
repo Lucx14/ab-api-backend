@@ -1,7 +1,7 @@
 module ControllerSpecHelper
-  def valid_home_attributes
+  def valid_listing_attributes
     {
-      home_type: 'Flat',
+      listing_type: 'Flat',
       short_description: 'Loft Room in E London in Family Home',
       long_description: 'This is a fantastic studio apartment offering bright, well presented accommodation. The property offers an abundance of light, stylish modern finish and various handy amenities, making it perfect for both tourists and business travellers.',
       total_occupancy: 1,
@@ -21,9 +21,9 @@ module ControllerSpecHelper
     }
   end
 
-  def invalid_home_attributes
+  def invalid_listing_attributes
     {
-      home_type: nil,
+      listing_type: nil,
       short_description: 'Loft Room in E London in Family Home',
       long_description: 'This is a fantastic studio apartment offering bright, well presented accommodation. The property offers an abundance of light, stylish modern finish and various handy amenities, making it perfect for both tourists and business travellers.',
       total_occupancy: 1,
