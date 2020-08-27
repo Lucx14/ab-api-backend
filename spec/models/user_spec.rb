@@ -8,5 +8,7 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:listings) }
+    it { is_expected.to have_many(:reservations).through(:listings) }
+    it { is_expected.to have_many(:reviews) }
   end
 end

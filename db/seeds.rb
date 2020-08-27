@@ -25,6 +25,7 @@ end
     has_kitchen: true,
     has_wifi: true,
     has_tv: true,
-    has_air_con: true
+    has_air_con: true,
+    price_per_night: 32.53
   )
 end

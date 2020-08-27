@@ -1,6 +1,10 @@
 class Listing < ApplicationRecord
   belongs_to :host, class_name: :User
 
+  has_many :reservations, dependent: :destroy
+  has_many :guests, through: :reservations
+  has_many :reviews, through: :reservations
+
   validates :listing_type, presence: true
   validates :short_description, presence: true
   validates :long_description, presence: true
@@ -14,4 +18,5 @@ class Listing < ApplicationRecord
   validates :post_code, presence: true
   validates :latitude, presence: true, numericality: true
   validates :longitude, presence: true, numericality: true
+  validates :price_per_night, presence: true
 end

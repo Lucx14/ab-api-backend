@@ -17,5 +17,6 @@ FactoryBot.define do
     has_wifi { Faker::Boolean.boolean }
     has_tv { Faker::Boolean.boolean }
     has_air_con { Faker::Boolean.boolean }
+    price_per_night { Faker::Number.decimal(l_digits: 2) }
   end
 end

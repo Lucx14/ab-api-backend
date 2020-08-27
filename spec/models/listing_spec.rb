@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Listing, type: :model do
+  describe 'associations' do
+    it { is_expected.to have_many(:reviews).through(:reservations) }
+    it { is_expected.to belong_to(:host) }
+    it { is_expected.to have_many(:reservations).dependent(:destroy) }
+    it { is_expected.to have_many(:guests).through(:reservations) }
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:listing_type) }
     it { is_expected.to validate_presence_of(:short_description) }
@@ -22,5 +29,6 @@ RSpec.describe Listing, type: :model do
     it { is_expected.to validate_numericality_of(:latitude) }
     it { is_expected.to validate_presence_of(:longitude) }
     it { is_expected.to validate_numericality_of(:longitude) }
+    it { is_expected.to validate_presence_of(:price_per_night) }
   end
 end
