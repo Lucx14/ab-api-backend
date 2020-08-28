@@ -48,6 +48,9 @@ Rails:
 RSpec/MultipleExpectations:
   Max: 8
 
+RSpec/MultipleMemoizedHelpers:
+  Max: 8
+
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
