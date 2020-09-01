@@ -23,6 +23,6 @@ class AuthenticateUser
     user = User.find_by(email: email)
     return user if user&.authenticate(password)
 
-    raise(ExceptionHandler::AuthenticationError, Messages::AuthMessages.invalid_credentials)
+    raise ExceptionHandler::AuthenticationError, Messages::AuthMessages.invalid_credentials
   end
 end

@@ -19,7 +19,7 @@ module ControllerSpecHelper
       has_tv: true,
       has_air_con: true,
       price_per_night: 33.33
-    }
+    }.to_json
   end
 
   def invalid_listing_attributes
@@ -42,7 +42,7 @@ module ControllerSpecHelper
       has_tv: true,
       has_air_con: true,
       price_per_night: 33.33
-    }
+    }.to_json
   end
 
   def valid_reservation_attributes

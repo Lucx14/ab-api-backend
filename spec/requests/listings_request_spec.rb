@@ -5,8 +5,10 @@ RSpec.describe 'Listings', type: :request do
   let!(:listings) { create_list(:listing, 10, host_id: user.id) }
   let(:listing_id) { listings.first.id }
 
+  let(:headers) { valid_headers }
+
   describe 'GET /listings' do
-    before { get '/listings' }
+    before { get '/listings', params: {}, headers: headers }
 
     it 'returns listings' do
       expect(response.body).not_to be_empty
@@ -19,7 +21,7 @@ RSpec.describe 'Listings', type: :request do
   end
 
   describe 'GET /listings/:id' do
-    before { get "/listings/#{listing_id}" }
+    before { get "/listings/#{listing_id}", params: {}, headers: headers }
 
     context 'when a record exists' do
       it 'returns the listing' do
@@ -47,10 +49,11 @@ RSpec.describe 'Listings', type: :request do
 
   describe 'POST /listings' do
     context 'when the request is valid' do
-      before { post '/listings', params: valid_listing_attributes }
+      before { post '/listings', params: valid_listing_attributes, headers: headers }
 
       it 'creates a listing' do
-        expect(JSON.parse(response.body)['long_description']).to eq(valid_listing_attributes[:long_description])
+        expect(JSON.parse(response.body)['long_description'])
+          .to eq(JSON.parse(valid_listing_attributes)['long_description'])
       end
 
       it 'returns a status code 201' do
@@ -59,7 +62,7 @@ RSpec.describe 'Listings', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/listings', params: invalid_listing_attributes }
+      before { post '/listings', params: invalid_listing_attributes, headers: headers }
 
       it 'returns a status code 422' do
         expect(response).to have_http_status(:unprocessable_entity)
@@ -73,7 +76,7 @@ RSpec.describe 'Listings', type: :request do
 
   describe 'PUT /listings/:id' do
     context 'when the record exists' do
-      before { put "/listings/#{listing_id}", params: valid_listing_attributes }
+      before { put "/listings/#{listing_id}", params: valid_listing_attributes, headers: headers }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -86,7 +89,7 @@ RSpec.describe 'Listings', type: :request do
   end
 
   describe 'DELETE /listings/:id' do
-    before { delete "/listings/#{listing_id}" }
+    before { delete "/listings/#{listing_id}", params: {}, headers: headers }
 
     it 'returns a status code 204' do
       expect(response).to have_http_status(:no_content)

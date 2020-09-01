@@ -1,5 +1,4 @@
 class ListingsController < ApplicationController
-  include ExceptionHandler
   before_action :set_listing, only: %i[show update destroy]
 
   def index
@@ -12,9 +11,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    # temporary hack while i figure this out -> prob current user
-    @user = User.last
-    @listing = @user.listings.create!(listing_params)
+    @listing = current_user.listings.create!(listing_params)
     render json: @listing, status: :created
   end
 

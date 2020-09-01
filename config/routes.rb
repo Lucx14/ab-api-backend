@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   resources :listings do
     resources :reservations
   end
+
+  post 'auth/login', to: 'authentication#authenticate'
+  post 'signup', to: 'users#create'
 end
