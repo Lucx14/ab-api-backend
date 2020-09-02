@@ -11,12 +11,10 @@ class ReservationsController < ApplicationController
   #   render json: @reservation, status: :ok
   # end
 
-  # def create
-  #   # to be corrected once i have auth and current user in place
-  #   @guest = User.last
-  #   @reservation = @listing.reservations.create!(reservation_params.merge(guest_id: @guest.id))
-  #   render json: @reservation, status: :created
-  # end
+  def create
+    @reservation = @listing.reservations.create!(reservation_params.merge(guest_id: current_user.id))
+    render json: @reservation, status: :created
+  end
 
   # def update
   #   @reservation.update(reservation_params)

@@ -1,14 +1,14 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe 'Reservations', type: :request do
-#   let(:host) { create(:user) }
-#   let(:guest) { create(:user) }
-#   let!(:listing) { create(:listing, host_id: host.id) }
-#   let!(:reservation) { create(:reservation, guest_id: guest.id, listing_id: listing.id) }
-#   let(:listing_id) { listing.id }
-#   let(:reservation_id) { reservation.id }
+RSpec.describe 'Reservations', type: :request do
+  let(:host) { create(:user) }
+  let(:guest) { create(:user) }
+  let!(:listing) { create(:listing, host_id: host.id) }
+  # let!(:reservation) { create(:reservation, guest_id: guest.id, listing_id: listing.id) }
+  let(:listing_id) { listing.id }
+  # let(:reservation_id) { reservation.id }
 
-#   let(:headers) { valid_headers }
+  let(:headers) { valid_guest_headers }
 
 #   describe 'GET /listings/:listing_id/reservations' do
 #     before { get "/listings/#{listing_id}/reservations", params: {}, headers: headers }
@@ -62,27 +62,27 @@
 #     end
 #   end
 
-#   describe 'POST /listings/:listing_id/reservations' do
-#     context 'when thew request attributes are valid' do
-#       before { post "/listings/#{listing_id}/reservations", params: valid_reservation_attributes }
+  describe 'POST /listings/:listing_id/reservations' do
+    context 'when thew request attributes are valid' do
+      before { post "/listings/#{listing_id}/reservations", params: valid_reservation_attributes, headers: headers }
 
-#       it 'returns a status code 201' do
-#         expect(response).to have_http_status(:created)
-#       end
-#     end
+      it 'returns a status code 201' do
+        expect(response).to have_http_status(:created)
+      end
+    end
 
-#     context 'when the request attributes are invalid' do
-#       before { post "/listings/#{listing_id}/reservations", params: {} }
+    context 'when the request attributes are invalid' do
+      before { post "/listings/#{listing_id}/reservations", params: {}, headers: headers }
 
-#       it 'returns a status code 422' do
-#         expect(response).to have_http_status(:unprocessable_entity)
-#       end
+      it 'returns a status code 422' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
 
-#       it 'returns a failure message' do
-#         expect(response.body).to match(/Validation failed: Checkin date can't be blank, Checkout date can't be blank/)
-#       end
-#     end
-#   end
+      it 'returns a failure message' do
+        expect(response.body).to match(/Validation failed: Checkin date can't be blank, Checkout date can't be blank/)
+      end
+    end
+  end
 
 #   describe 'PUT /listings/:listing_id/reservations/:id' do
 #     let(:new_checkout_date) { Faker::Date.between(from: 5.weeks.from_now, to: 6.weeks.from_now) }
@@ -121,4 +121,4 @@
 #       expect(response).to have_http_status(:no_content)
 #     end
 #   end
-# end
+end

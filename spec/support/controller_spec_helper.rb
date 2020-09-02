@@ -49,7 +49,7 @@ module ControllerSpecHelper
     {
       checkin_date: Faker::Date.between(from: Date.today, to: 2.weeks.from_now),
       checkout_date: Faker::Date.between(from: 3.weeks.from_now, to: 4.weeks.from_now)
-    }
+    }.to_json
   end
 
   # generate tokens from user id
@@ -74,6 +74,13 @@ module ControllerSpecHelper
   def invalid_headers
     {
       'Authorization' => nil,
+      'Content-Type' => 'application/json'
+    }
+  end
+
+  def valid_guest_headers
+    {
+      'Authorization' => token_generator(guest.id),
       'Content-Type' => 'application/json'
     }
   end
