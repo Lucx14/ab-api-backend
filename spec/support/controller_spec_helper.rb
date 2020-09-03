@@ -52,6 +52,26 @@ module ControllerSpecHelper
     }.to_json
   end
 
+  def invalid_reservation_attributes
+    {
+      checkin_date: ''
+    }.to_json
+  end
+
+  def valid_review_attributes
+    {
+      rating: 3,
+      description: Faker::Lorem.sentence(word_count: 10)
+    }.to_json
+  end
+
+  def invalid_review_attributes
+    {
+      rating: '',
+      description: ''
+    }.to_json
+  end
+
   # generate tokens from user id
   def token_generator(user_id)
     JsonWebToken.encode(user_id: user_id)
