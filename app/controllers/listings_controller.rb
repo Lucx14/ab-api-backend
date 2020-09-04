@@ -34,7 +34,7 @@ class ListingsController < ApplicationController
       :country, :city, :street,
       :house_number, :post_code, :latitude,
       :longitude, :has_kitchen, :has_wifi,
-      :has_tv, :has_air_con, :price_per_night
+      :has_tv, :has_air_con, :price_per_night, images: []
     )
   end
 
