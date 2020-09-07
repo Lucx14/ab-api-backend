@@ -1,16 +1,21 @@
 class Reservation < ApplicationRecord
+  # custom activeModel validator
+  class AvailabilityValidator < ActiveModel::EachValidator
+    def validate_each(record, attribute, value)
+      reservations = Reservation.where('listing_id = ?', record.listing_id)
+      date_ranges = reservations.map { |r| r.checkin_date..r.checkout_date }
+      date_ranges.each do |range|
+        record.errors.add(attribute, 'not available') if range.include? value
+      end
+    end
+  end
+
   belongs_to :listing
   belongs_to :guest, class_name: :User
   has_many :reviews
 
-  validates :checkin_date, presence: true
-  validates :checkout_date, presence: true
-
+  validates :checkin_date, :checkout_date, presence: true, availability: true
   validate :checkout_date_after_checkin_date
-
-  # https://medium.com/lightthefuse/ruby-on-rails-date-validation-in-a-booking-and-disabling-dates-in-date-picker-3e5b4e9b4640
-  # Need to run validations on reservations
-  # And we will use the article above to add an extra custom validation to prevent the date ranges crossing over!!
 
   private
 
