@@ -24,11 +24,13 @@ class Listing < ApplicationRecord
   validates :longitude, presence: true, numericality: true
   validates :price_per_night, presence: true
 
-  # poss validations?? think there is a gem too?
-  # validates :images, presence: true,
-  # blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'], size_range: 1..3.megabytes }
-
   def image_urls
     images.map { |image| url_for(image) }
+  end
+
+  def unavailable_dates
+    reservations.pluck(:checkin_date, :checkout_date).map do |range|
+      { from: range[0], to: range[1] }
+    end
   end
 end

@@ -3,7 +3,8 @@ class ListingSerializer < ActiveModel::Serializer
              :total_occupancy, :total_bedrooms, :total_beds,
              :country, :city, :street, :house_number, :post_code,
              :latitude, :longitude, :has_kitchen, :has_wifi, :has_tv,
-             :has_air_con, :price_per_night, :host_details, :reviews
+             :has_air_con, :price_per_night, :host_details,
+             :reviews, :unavailable_dates
 
   def images
     object.image_urls
@@ -15,6 +16,10 @@ class ListingSerializer < ActiveModel::Serializer
       host_name: "#{object.host.first_name} #{object.host.last_name}",
       host_email: object.host.email
     }
+  end
+
+  def unavailable_dates
+    object.unavailable_dates
   end
 
   def reviews
