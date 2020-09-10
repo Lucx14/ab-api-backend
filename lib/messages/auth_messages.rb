@@ -16,6 +16,10 @@ module Messages
       'Missing token'
     end
 
+    def self.permission_error
+      'Permission denied'
+    end
+
     def self.unauthorized
       'Unauthorized request'
     end

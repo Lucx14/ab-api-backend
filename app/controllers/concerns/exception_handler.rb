@@ -6,6 +6,7 @@ module ExceptionHandler
   class MissingToken < StandardError; end
   class MissingRelationship < StandardError; end
   class DuplicateRelationship < StandardError; end
+  class PermissionError < StandardError; end
 
   included do
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_transaction
@@ -16,6 +17,7 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordNotUnique, with: :invalid_transaction
     rescue_from ExceptionHandler::MissingRelationship, with: :invalid_transaction
     rescue_from ExceptionHandler::DuplicateRelationship, with: :invalid_transaction
+    rescue_from ExceptionHandler::PermissionError, with: :unauthorized_request
   end
 
   private

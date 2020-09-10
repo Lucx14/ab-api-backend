@@ -14,7 +14,8 @@ class ListingSerializer < ActiveModel::Serializer
     {
       host_id: object.host.id,
       host_name: "#{object.host.first_name} #{object.host.last_name}",
-      host_email: object.host.email
+      host_email: object.host.email,
+      host_avatar: (object.host.avatar_url || nil)
     }
   end
 
