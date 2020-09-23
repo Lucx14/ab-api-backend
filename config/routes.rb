@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
-  put '/users/:user_id/avatar', to: 'users#change_avatar'
-  get '/users/:user_id', to: 'users#show'
+
+  scope :users, controller: :users do
+    put '/:user_id/avatar' => :change_avatar
+    get '/:user_id' => :show, as: "user"
+  end
+  
 end
