@@ -6,6 +6,7 @@ ruby '2.7.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bcrypt', '~> 3.1', '>= 3.1.15'
 gem 'cloudinary', '~> 1.2', '>= 1.2.2'
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
