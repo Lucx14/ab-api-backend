@@ -25,6 +25,7 @@ module AbApiBackend
     config.load_defaults 6.0
     require "./lib/messages/auth_messages"
 
+    config.active_job.queue_name_prefix = Rails.env
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

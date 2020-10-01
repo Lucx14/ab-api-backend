@@ -1,0 +1,11 @@
+:timeout: 30
+:verbose: false
+
+:queues:
+  - [<%= ENV.fetch("RAILS_ENV", "development") %>_default, 1]
+  - [<%= ENV.fetch("RAILS_ENV", "development") %>_critical, 4]
+
+:concurrency: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+:production:
+  :verbose: false
