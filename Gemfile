@@ -12,6 +12,9 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'jwt', '~> 2.2', '>= 2.2.2'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+gem 'sidekiq', '~> 6.1', '>= 6.1.2'
+gem 'sinatra', '~> 2.1'
+gem 'redis', '~> 4.2', '>= 4.2.2'
 
 gem 'active_model_serializers', '~> 0.10.10'
 
