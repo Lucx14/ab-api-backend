@@ -31,3 +31,7 @@ coverage
 
 # Ignore cloudinary config file
 /config/cloudinary.yml
+
+.rakeTasks
+.generators
+.idea
