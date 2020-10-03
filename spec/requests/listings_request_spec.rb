@@ -68,7 +68,7 @@ RSpec.describe 'Listings', type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it 'returns a validation vailure message' do
+      it 'returns a validation failure message' do
         expect(JSON.parse(response.body)['message']).to match(/Validation failed: Listing type can't be blank/)
       end
     end
